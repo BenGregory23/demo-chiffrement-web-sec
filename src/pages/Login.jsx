@@ -33,13 +33,14 @@ function Login() {
             salt: usersalt.toString()
         }
         localStorage.setItem(username, JSON.stringify(user))
+        localStorage.setItem('connected', true.toString());
         // go to welcome page
-        navigate('/welcome');
+        navigate('/welcome',{state: {username: username}});
+
     }
 
     const checkIfUserExists = (username) => {
         for(let i=0; i<localStorage.length; i++) {
-            console.log(localStorage.key(i))
             if(localStorage.key(i) === username) {
                 return true;
             }
@@ -48,7 +49,6 @@ function Login() {
 
       const checkIfPasswordIsCorrect = (username, password) => {
         let user = JSON.parse(localStorage.getItem(username));
-        console.log(user)
         if(user.passwordHash === sha256(password).toString()) {
             return true;
         }
