@@ -13,11 +13,16 @@ function Welcome() {
         }
     })
 
+    const disconnect = () => {
+        localStorage.setItem('connected', false.toString());
+        navigate('/login')
+    }
+
   return (
     <div>
       <h1>Welcome {location.state !== null ? location.state.username : Error} !</h1>
-        <button>
-            <Link to={"/login"}>Disconnect</Link>
+        <button onClick={disconnect}>
+           Disconnect
         </button>
 
     </div>
