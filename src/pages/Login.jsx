@@ -10,6 +10,7 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [genericSalt, setGenericSalt] = useState('');
+    const [genericPassphrase, setGenericPassphrase] = useState("phraseVraimentSecrete");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,6 +31,7 @@ function Login() {
             passwordHash: sha256(password).toString(),
             passwordHashAndGenericSalt: PBKDF2(password, genericSalt, { keySize: 512 / 32, iterations: 1000 }).toString(),
             passwordHashAndSalt: PBKDF2(password, usersalt, { keySize: 512 / 32, iterations: 1000 }).toString(),
+            passwordSymetricAndHash: PBKDF2(CryptoJS.AES.encrypt(password, "Secret Passphrase").toString(), usersalt, { keySize: 512 / 32, iterations: 10}).toString(),
             salt: usersalt.toString()
         }
         localStorage.setItem(username, JSON.stringify(user))
