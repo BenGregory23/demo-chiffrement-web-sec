@@ -14,6 +14,11 @@ This project is a simple website where a user can sign up. His password will be 
   $ npm run dev
 ```
 
+## Hashing
+
+All hashing functions have been done with a javascript library called [crypto-js](https://cryptojs.gitbook.io/docs/). These functions can be found the *Login.jsx* file in the *src/view* folder. 
+
+
 
 ## Check the demo 
 
